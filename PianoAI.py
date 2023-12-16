@@ -47,6 +47,7 @@ while(True):
     # Draw bounding boxes around text and check for overlap with fingertips
     n_boxes = len(d['level'])
     for i in range(n_boxes):
+        print(d['text'][i])
         if d['text'][i] == 'BIOLOGY':
             # Increase the size of the bounding box by an offset
             offset = 20  # Change this value as needed
