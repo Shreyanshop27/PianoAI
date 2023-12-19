@@ -8,6 +8,7 @@ import pygame
 pygame.mixer.init()
 
 
+
 # Set tesseract path to the location where it's installed
 # pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'  # Update this path
 
@@ -48,7 +49,7 @@ while(True):
     n_boxes = len(d['level'])
     for i in range(n_boxes):
         print(d['text'][i])
-        if d['text'][i] == 'BIOLOGY':
+        if d['text'][i] in 'BIOLOGY':
             # Increase the size of the bounding box by an offset
             offset = 20  # Change this value as needed
             (x, y, w, h) = (d['left'][i] - offset, d['top'][i] - offset, d['width'][i] + 2*offset, d['height'][i] + 2*offset)
