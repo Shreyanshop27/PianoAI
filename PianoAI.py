@@ -2,7 +2,11 @@ import cv2
 import pytesseract
 import mediapipe as mp
 from pydub import AudioSegment
-from pydub.playback import play
+import pygame
+
+# Initialize Pygame mixer
+pygame.mixer.init()
+
 
 # Set tesseract path to the location where it's installed
 # pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'  # Update this path
@@ -16,7 +20,7 @@ hands = mp_hands.Hands()
 mp_drawing = mp.solutions.drawing_utils  # For drawing hand landmarks
 
 # Load the audio file
-sound = AudioSegment.from_wav(r"Data Collection\Notes\C4.wav")
+sound = pygame.mixer.Sound('C4.wav')
 
 # Start capturing video 
 cap = cv2.VideoCapture(0)
@@ -43,7 +47,8 @@ while(True):
     # Draw bounding boxes around text and check for overlap with fingertips
     n_boxes = len(d['level'])
     for i in range(n_boxes):
-        if d['text'][i] == 'HISTORY':
+        print(d['text'][i])
+        if d['text'][i] == 'BIOLOGY':
             # Increase the size of the bounding box by an offset
             offset = 20  # Change this value as needed
             (x, y, w, h) = (d['left'][i] - offset, d['top'][i] - offset, d['width'][i] + 2*offset, d['height'][i] + 2*offset)
@@ -59,7 +64,7 @@ while(True):
                     # Check if the fingertip overlaps with the bounding box
                     if x <= fingertip_x <= x + w and y <= fingertip_y <= y + h:
                         # If the text is 'C4', play the sound
-                        play(sound)
+                        sound.play()
 
     # Display the resulting frame
     cv2.imshow('frame', frame)
