@@ -21,6 +21,7 @@ hands = mp_hands.Hands()
 mp_drawing = mp.solutions.drawing_utils  # For drawing hand landmarks
 
 # Load the audio file
+
 do = pygame.mixer.Sound(r'Notes\do.mp3')
 re = pygame.mixer.Sound(r'Notes\re.mp3')
 mi = pygame.mixer.Sound(r'Notes\mi.mp3')
@@ -54,9 +55,9 @@ while(True):
     n_boxes = len(d['level'])
     for i in range(n_boxes):
         print(d['text'][i])
-        if d['text'][i] in 'do':
+        if d['text'][i] == 'Triangle':
             # Increase the size of the bounding box by an offset
-            offset = 20  # Change this value as needed
+            offset = 50  # Change this value as needed
             (x, y, w, h) = (d['left'][i] - offset, d['top'][i] - offset, d['width'][i] + 2*offset, d['height'][i] + 2*offset)
             frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
@@ -71,9 +72,11 @@ while(True):
                     if x <= fingertip_x <= x + w and y <= fingertip_y <= y + h:
                         # If the text is 'C4', play the sound
                         do.play()
-        if d['text'][i] in 're':
+    for i in range(n_boxes):
+        print(d['text'][i])
+        if d['text'][i] == 'PHYSICS':
             # Increase the size of the bounding box by an offset
-            offset = 20  # Change this value as needed
+            offset = 50  # Change this value as needed
             (x, y, w, h) = (d['left'][i] - offset, d['top'][i] - offset, d['width'][i] + 2*offset, d['height'][i] + 2*offset)
             frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
@@ -88,9 +91,11 @@ while(True):
                     if x <= fingertip_x <= x + w and y <= fingertip_y <= y + h:
                         # If the text is 'C4', play the sound
                         re.play()
-        if d['text'][i] in 'mi':
+    for i in range(n_boxes):
+        print(d['text'][i])
+        if d['text'][i] == 'PHYSICS':
             # Increase the size of the bounding box by an offset
-            offset = 20  # Change this value as needed
+            offset = 50  # Change this value as needed
             (x, y, w, h) = (d['left'][i] - offset, d['top'][i] - offset, d['width'][i] + 2*offset, d['height'][i] + 2*offset)
             frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
@@ -105,9 +110,11 @@ while(True):
                     if x <= fingertip_x <= x + w and y <= fingertip_y <= y + h:
                         # If the text is 'C4', play the sound
                         mi.play()
-        if d['text'][i] in 'fa':
+    for i in range(n_boxes):
+        print(d['text'][i])
+        if d['text'][i] == 'PHYSICS':
             # Increase the size of the bounding box by an offset
-            offset = 20  # Change this value as needed
+            offset = 50  # Change this value as needed
             (x, y, w, h) = (d['left'][i] - offset, d['top'][i] - offset, d['width'][i] + 2*offset, d['height'][i] + 2*offset)
             frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
@@ -122,9 +129,11 @@ while(True):
                     if x <= fingertip_x <= x + w and y <= fingertip_y <= y + h:
                         # If the text is 'C4', play the sound
                         fa.play()
-        if d['text'][i] in 'sol':
+    for i in range(n_boxes):
+        print(d['text'][i])
+        if d['text'][i] == 'PHYSICS':
             # Increase the size of the bounding box by an offset
-            offset = 20  # Change this value as needed
+            offset = 50  # Change this value as needed
             (x, y, w, h) = (d['left'][i] - offset, d['top'][i] - offset, d['width'][i] + 2*offset, d['height'][i] + 2*offset)
             frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
@@ -139,9 +148,11 @@ while(True):
                     if x <= fingertip_x <= x + w and y <= fingertip_y <= y + h:
                         # If the text is 'C4', play the sound
                         sol.play()
-        if d['text'][i] in 'la':
+    for i in range(n_boxes):
+        print(d['text'][i])
+        if d['text'][i] == 'PHYSICS':
             # Increase the size of the bounding box by an offset
-            offset = 20  # Change this value as needed
+            offset = 50  # Change this value as needed
             (x, y, w, h) = (d['left'][i] - offset, d['top'][i] - offset, d['width'][i] + 2*offset, d['height'][i] + 2*offset)
             frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
@@ -156,7 +167,8 @@ while(True):
                     if x <= fingertip_x <= x + w and y <= fingertip_y <= y + h:
                         # If the text is 'C4', play the sound
                         la.play()
-
+    
+        
     # Display the resulting frame
     cv2.imshow('frame', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
